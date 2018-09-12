@@ -22,42 +22,15 @@ app.post('/todos',(req,res) => {
     console.log(req.body);
 })
 
+app.get('/todos',(req,res)=>{
+    Todo.find().then((todos)=>{
+        res.send(todos);
+    }, (e)=>{
+        res.status(400).send(e);
+    })
+})
 app.listen(3000,() => {
     
 })
 
-// var NewTodo = new Todo({ 
-//     text : 'my todo applicaion'
-// });
-
-// NewTodo.save().then((doc) => {
-//     console.log('Saved Todo',doc);
-// },(e) => {
-// console.log('Unable to save Todo');
-// })
-
-// var ApnaTodo = new Todo({ 
-//     text : 'again todo',
-//     completed:true,
-//     completedAt:12
-// });
-
-// ApnaTodo.save().then((doc) => {
-//     console.log(JSON.stringify(doc,undefined,2));
-// },(e) => {
-// console.log('Unable to save Todo',e);
-// })
-
-
-
-
-// var UserData = new UserTodo({
-//     name: 'Harshit',
-//     email:'nikam@gmail.com'
-// });
-
-// UserData.save().then((doc) => {
-//     console.log(doc);
-// },(e)=>{
-//     console.log('Unable to save UserTodo',e);
-// })
+module.exports = {app};
